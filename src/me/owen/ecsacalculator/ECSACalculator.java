@@ -37,6 +37,7 @@ public class ECSACalculator {
             for(Path path : stream){
                 if(!Files.isDirectory(path) && path.toString().contains(".txt")){
                     filesInFolder.add(path.toFile());
+                    System.out.println("Opening File: "+path);
                 }
             }
         }catch(Exception ignored){
@@ -65,11 +66,7 @@ public class ECSACalculator {
             for(double voltage : workingData.keySet()){
                 //System.out.println("positive is currently " + positive);
                 if(workingData.get(voltage) >= averageCurrent){
-                    //	System.out.println(workingData.get(voltage) + " is a top current and its voltage is " + voltage);
-
-
-                    //This is where the issue is. I dont think it likes the negative voltages
-
+                    //	System.out.println(workingData.get(voltage) + " is a top current and its voltage is " + voltage)
 
 
                     if(Math.abs(ECSACalculator.desiredVoltage - voltage) < Math.abs(top - ECSACalculator.desiredVoltage)){
@@ -91,7 +88,7 @@ public class ECSACalculator {
             savedVoltages[fileOn][1] = bottom;
             //System.out.println("Top = " + top + " with Bottom = " + bottom);
             //average the currents of positive and negative
-            savedCurrents[fileOn] = ((workingData.get(top) + workingData.get(bottom))/2);
+            savedCurrents[fileOn] = Math.abs(((workingData.get(bottom) - workingData.get(top))/2));
             System.out.println("Anodic voltage: " + top + "\nCurrent: " + workingData.get(top));
             System.out.println("Cathodic voltage: " + bottom + "\nCurrent: " + workingData.get(bottom));
 

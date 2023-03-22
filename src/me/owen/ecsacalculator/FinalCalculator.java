@@ -6,7 +6,8 @@ public class FinalCalculator {
 
     static double[] scanRates = {.010, .020, .040, .060, .080, .100};
     //static double[] scanRates = {.005, .010, .025, .050, .1, .2, .4};
-    static double Cdl = .0285;
+    static double Cdl = .028;
+    //static double Cdl = 0.0285;
 
     public static double calculateECSA(double[] currents){
         double ECSA = 0.0;
