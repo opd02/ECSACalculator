@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class ECSACalculator {
@@ -42,6 +44,16 @@ public class ECSACalculator {
             }
         }catch(Exception ignored){
 
+        }
+
+        filesInFolder.sort((o1, o2) -> {
+            String p1 = o1.getAbsolutePath();
+            String p2 = o2.getAbsolutePath();
+            return p1.compareTo(p2);
+        });
+
+        for(File file : filesInFolder){
+            System.out.println("SORTED FILE: " + file.getName());
         }
 
         for(File file : filesInFolder){
